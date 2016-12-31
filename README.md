@@ -30,5 +30,4 @@ Feel free to submit issue or better, some pull requests !
 
 ### Who do I talk to? ###
 
-sebastien at pittet dot org
-Société Suisse de Spéléologie
+[sebastien at pittet dot org](https://sebastien.pittet.org)
