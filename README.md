@@ -14,15 +14,15 @@ I will provide code samples to better explain this.
 
 ### How do I get set up? ###
 
-`sudo apt-get update && sudo apt-get install git python-pip --yes
-`git clone git@bitbucket.org:sebastienpittet/lcavelink.git
-`cd lcavelink
-`virtualenv venv
-`source venv/bin/activate
-`sudo pip install -r requirements.txt
+`sudo apt-get update && sudo apt-get install git python-pip --yes`
+`git clone git@bitbucket.org:sebastienpittet/lcavelink.git`
+`cd lcavelink`
+`virtualenv venv`
+`source venv/bin/activate`
+`sudo pip install -r requirements.txt`
 
 You should now be able to test the library with:
-`python lcavelink.py
+`python lcavelink.py`
 
 ### Contribution guidelines ###
 
