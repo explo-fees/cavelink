@@ -40,7 +40,7 @@ class Cavelink:
 
     def __init__(self, URL = default_CL, rows = default_rows):
         # Replace number of rows, if provided
-        URL = re.sub( '(?<=l=)\d{2}', str(rows), URL )
+        URL = re.sub( '(?<=l=)\d{1,}', str(rows), URL )
 
         webpage = urllib2.Request(URL)
         
