@@ -1,29 +1,34 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+Cave-link is a radio device able to transmit data from a cave. You can add some measurements captor.
+The data is consolidated on creator's website (database) and displayed on a webpage.
+
+Ask Felix to get your specific URL.
+
+If you want to know more about Cave-link system, the [website](http://www.cavelink.com title="CaveLink website") is the good place to start !
 
 ### What is this repository for? ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+This python library allows you to gather the data by parsing the webpage. You will the be able to store your data in your own database.
+I will provide code samples to better explain this.
 
 ### How do I get set up? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+`sudo apt-get update && sudo apt-get install git python-pip --yes
+`git clone git@bitbucket.org:sebastienpittet/lcavelink.git
+`cd lcavelink
+`virtualenv venv
+`source venv/bin/activate
+`sudo pip install -r requirements.txt
+
+You should now be able to test the library with:
+`python lcavelink.py
 
 ### Contribution guidelines ###
 
-* Writing tests
-* Code review
-* Other guidelines
+* Feel free to submit issue or better, some pull requests !
 
 ### Who do I talk to? ###
 
-* Repo owner or admin
-* Other community or team contact
+sebastien at pittet dot org
+Société Suisse de Spéléologie
