@@ -1,9 +1,9 @@
 # README #
 
-Cave-link is a radio device able to transmit data from a cave. You can add some measurements captor.
-The data is consolidated on creator's website (database) and displayed on a webpage.
+Cave-link is a radio device able to transmit data from a cave. You can add some measurement captors.
+The data is consolidated on creator's website (database) and displayed on a [webpage where the data is dump to](http://www.cavelink.com/cl/da.php?s=106&g=1&w=0&l=10 title="example").
 
-Ask Felix to get your specific URL.
+If you own a Cave-link, you should ask Felix Ziegler to get your specific URL.
 
 If you want to know more about Cave-link system, the [website](http://www.cavelink.com title="CaveLink website") is the good place to start !
 
