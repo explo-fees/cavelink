@@ -32,7 +32,7 @@ default_CL = _CL_NIVEAU_LANCELEAU
 default_rows = '10'
 #########################################################################
 
-class CaveLinkData:
+class CaveLink:
     """
     Parse the webpage used to export the data and
     provides values back.
@@ -121,13 +121,13 @@ if __name__ == "__main__":
 
     # If launched interactively, display OK message
     if stdout.isatty():
-        CaveLink = CaveLinkData(URL=_CL_TEMP_SIPHON, rows='1')
+        SlumpTemperature = CaveLink(URL=_CL_TEMP_SIPHON, rows='1')
         print('################################################')
-        print('Station ID is: %s' % CaveLink.station )
-        print('Group ID is: %s' % CaveLink.group )
-        print('Number is: %s' % CaveLink.number )
-        print('Unit for this data set is: %s' % CaveLink.unit )
-        print('Last data is: %s' % CaveLink.getData() )
+        print('Station ID is: %s' % SlumpTemperature.station )
+        print('Group ID is: %s' % SlumpTemperature.group )
+        print('Number is: %s' % SlumpTemperature.number )
+        print('Unit for this data set is: %s' % SlumpTemperature.unit )
+        print('Last data is: %s' % SlumpTemperature.getData() )
         print('################################################')
 
     exit(0)
