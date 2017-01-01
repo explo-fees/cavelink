@@ -17,7 +17,7 @@ I will provide code samples to better explain this.
 To ensure a proper setup, I recommend the use of virtualenv (but optionnal).
 
     sudo apt-get update && sudo apt-get install git python-pip --yes
-    git clone git@bitbucket.org:sebastienpittet/lcavelink.git
+    git clone git@github.com:SebastienPittet/lcavelink.git
     cd lcavelink
     virtualenv venv
     source venv/bin/activate
