@@ -17,7 +17,7 @@ Then, in the prompt, enter the following commands:
     .open cavelink.db
     .mode column on
     .headers on
-    SELECT Description, Epoch, Value, Unit FROM data LEFT JOIN sensors ;
+    SELECT Description, Epoch, Value, Unit FROM data LEFT JOIN sensors WHERE Data.Sensor = Sensors.ID;
 
 ## File Description ##
 
