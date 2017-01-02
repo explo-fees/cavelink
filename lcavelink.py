@@ -69,7 +69,7 @@ class Cavelink:
             if match:
                 self.number = match.group(0)
             
-            match = re.search('(?<=Einheit : )\D{1}', line)
+            match = re.search('(?<=Einheit : )\w{1,}', line)
             if match:
                 self.unit = match.group(0).upper() # uppercase (C | M | ?)
 
