@@ -7,6 +7,8 @@
 ###############################################################################
 # Imports
 import os
+import sys
+sys.path.append(os.getcwd()+'/../')
 import lcavelink
 import sqlite3
 
