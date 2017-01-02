@@ -6,7 +6,7 @@ The data is consolidated on creator's server (database) and displayed through a 
 
 If you own a Cave-link, you should ask Felix Ziegler to get your specific URL, for the sensors you have.
 
-If you know nothing about Cave-link system, the official [website](http://www.cavelink.com title="CaveLink website") is the good place to start !
+If you know nothing about Cave-link system, the official [website](http://www.cavelink.com title="CaveLink website") is the good place to start ! Or maybe, you can also start with [Wikipedia](https://de.wikipedia.org/wiki/Cave-Link title="Wikipedia CaveLink").
 
 ### What is this repository for? ###
 
