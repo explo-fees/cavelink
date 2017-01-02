@@ -22,14 +22,17 @@ else:
     import urllib2
 
 ########################### Common definitions #########################
-
+# Some examples of URL
 _CL_NIVEAU_S2_COVA = "http://www.cavelink.com/cl/da.php?s=115&g=1&w=103&l=10"
 _CL_NIVEAU_LANCELEAU = "http://www.cavelink.com/cl/da.php?s=142&g=20&w=100&l=10"
 _CL_TEMP_SIPHON = "http://www.cavelink.com/cl/da.php?s=106&g=1&w=0&l=10"
+_CL_V_FEES_SUR1 = "http://www.cavelink.com/cl/da.php?s=142&g=0&w=0&l=10"
+_CL_TEMP_FEES_SUR1 = "http://www.cavelink.com/cl/da.php?s=142&g=10&w=1&l=10"
 
-
+# Default definitions
 default_CL = _CL_NIVEAU_LANCELEAU
 default_rows = '10'
+
 #########################################################################
 
 class Cavelink:
@@ -103,13 +106,16 @@ def toEpoch(value):
 
 def findDate(inputValue):
     try:
-        DateTimeString = str( parse(inputValue, ignoretz=True) )
+        DateTimeString = str( parse(inputValue, ignoretz=True, dayfirst=True) )
     except:
         #if not found, epoch = 0
         DateTimeString = "1970-01-01 00:00:00"
      
     # Convert to epoch date time and return the value   
     return toEpoch(DateTimeString)
+
+def toHumanTime(epoch):
+    return time.strftime("%d.%m.%Y %H:%M", time.localtime(float(epoch)))
 ######################################################################
 
     
@@ -121,13 +127,21 @@ if __name__ == "__main__":
 
     # If launched interactively, display OK message
     if stdout.isatty():
-        SlumpTemperature = Cavelink(URL=_CL_TEMP_SIPHON, rows='1')
+        # Get last value measured/transmitted (by asking only 1 last row)
+        SlumpTemperature = Cavelink(URL=_CL_TEMP_SIPHON, rows=1)
+        Data = SlumpTemperature.getData()
+
         print('################################################')
         print('Station ID is: %s' % SlumpTemperature.station )
         print('Group ID is: %s' % SlumpTemperature.group )
         print('Number is: %s' % SlumpTemperature.number )
-        print('Unit for this data set is: %s' % SlumpTemperature.unit )
-        print('Last data is: %s' % SlumpTemperature.getData() )
+        print('Unit for this data set is: %s\n---' % SlumpTemperature.unit )
+
+        for key, value in Data.iteritems():
+            LastDataValue = value
+            LastDataTime = toHumanTime(str(key))
+            print('%s : %s %s' % (LastDataTime, LastDataValue, SlumpTemperature.unit))
+
         print('################################################')
 
     exit(0)
