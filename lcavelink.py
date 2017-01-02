@@ -57,15 +57,15 @@ class Cavelink:
 
         for line in self.data: 
             
-            match = re.search('(?<=Stn=)\d{3}', line)
+            match = re.search('(?<=Stn=)\d{1,}', line)
             if match:
                 self.station = match.group(0)
             
-            match = re.search('(?<=Grp=)\d{1,3}', line)
+            match = re.search('(?<=Grp=)\d{1,}', line)
             if match:
                 self.group = match.group(0)
             
-            match = re.search('(?<=Nr=)\d{1,3}', line)
+            match = re.search('(?<=Nr=)\d{1,}', line)
             if match:
                 self.number = match.group(0)
             
