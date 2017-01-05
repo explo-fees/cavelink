@@ -94,13 +94,17 @@ class Cavelink:
         DictValues = {}
 
         for line in self.data:
-            epochDatetime = findDate(line[0:16])
-            if epochDatetime >= 0 :
-                # a date was found on this line
-                DictValues [epochDatetime] = float(line[17:]) # Create a dict with values
+            if IsNotNull(line):
+                epochDatetime = findDate(line[0:16])
+                if epochDatetime > 0:
+                    # a date was found on this line
+                    DictValues [epochDatetime] = float(line[17:]) # Create a dict with values
         return DictValues
 
 ####################### SOME USEFUL TOOLS ###############################
+def IsNotNull(value):
+    return value is not None and len(value) > 0
+
 def toEpoch(value):
     return int( time.mktime(time.strptime(value,"%Y-%m-%d %H:%M:%S")) )
 
@@ -128,7 +132,7 @@ if __name__ == "__main__":
     # If launched interactively, display OK message
     if stdout.isatty():
         # Get last value measured/transmitted (by asking only 1 last row)
-        SlumpTemperature = Cavelink(URL=_CL_TEMP_SIPHON, rows=1)
+        SlumpTemperature = Cavelink(URL=_CL_TEMP_SIPHON, rows=10)
         Data = SlumpTemperature.getData()
 
         print('################################################')
