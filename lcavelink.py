@@ -13,13 +13,7 @@ Following libraries are required :
 from dateutil.parser import *
 import time
 import re # to use regular expression in python
-
-# HTTP libraries depends upon Python 2 or 3
-from sys import version_info
-if version_info.major == 3 :
-    import urllib.request
-else:
-    import urllib2
+import urllib2
 
 ########################### Common definitions #########################
 # Some examples of URL
@@ -45,7 +39,16 @@ class Cavelink:
         # Replace number of rows, if provided
         URL = re.sub( '(?<=l=)\d{1,}', str(rows), URL )
 
-        htmlContent = ReadWebPage(URL)
+        import urllib2
+        webpage = urllib2.Request(URL)
+        
+        try:
+            handle = urllib2.urlopen(webpage)
+        except IOError:
+            print ('ERROR : unable to get the webpage :-/')
+
+        # Get the HTML page
+        htmlContent = handle.read()
 
         self.rawData = htmlContent.replace(",", "") # remove the separator (comma)      
         self.data = htmlContent.split("<br>")
@@ -113,30 +116,6 @@ def findDate(inputValue):
 def toHumanTime(epoch):
     return time.strftime("%d.%m.%Y %H:%M", time.localtime(float(epoch)))
 
-def ReadWebPage(URL):
-    # HTTP libraries depends upon Python 2 or 3
-    from sys import version_info
-    if version_info.major == 3 :
-        import urllib.request, urllib.parse
-        webpage = urllib.request(URL)
-
-        try:
-            handle = urllib.urlopen(webpage)
-        except IOError:
-            print ('ERROR : unable to get the webpage :-/')
-    else:
-        import urllib2
-        webpage = urllib2.Request(URL)
-        
-        try:
-            handle = urllib2.urlopen(webpage)
-        except IOError:
-            print ('ERROR : unable to get the webpage :-/')
-
-        # Get the HTML page
-        htmlContent = handle.read()
-
-    return htmlContent
 ######################################################################
 
     

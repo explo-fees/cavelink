@@ -14,6 +14,8 @@ This python library gather the data by parsing the webpage. You will then be abl
 I will provide code samples to better explain this.
 
 ### How do I get set up? ###
+Written for python v.2.7.
+
 To ensure a proper setup, I recommend the use of virtualenv (but optionnal).
 
     sudo apt-get update && sudo apt-get install git python-pip --yes
