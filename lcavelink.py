@@ -13,7 +13,15 @@ Following libraries are required :
 from dateutil.parser import *
 import time
 import re # to use regular expression in python
-import urllib2
+
+# HTTP libraries depends upon Python 2 or 3
+from sys import version_info
+if version_info.major == 3 :
+    import urllib.parse, urllib.request
+else:
+    import urllib2
+
+print(version_info.major)
 
 ########################### Common definitions #########################
 # Some examples of URL
