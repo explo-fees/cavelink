@@ -117,7 +117,7 @@ def ReadWebPage(URL):
     # HTTP libraries depends upon Python 2 or 3
     from sys import version_info
     if version_info.major == 3 :
-        import urllib.request
+        import urllib.request, urllib.parse
         webpage = urllib.request(URL)
 
         try:
