@@ -49,7 +49,10 @@ conn.execute(create_sensor_query)
 
 # Insert each dict line into database
 for key, value in motiers_Water_Level.getData().iteritems():
-    sql_insert = 'INSERT OR IGNORE INTO DATA (Epoch, Value, Sensor) VALUES (%s, %s, %s)' % (key, value, 1)
+    sql_insert = 'INSERT OR IGNORE INTO DATA (Epoch, Value, Sensor)\
+                  SELECT %s, %s, sensors.id \
+                  FROM sensors \
+                  WHERE Description="Water Level in Motiers"' % (key, value)
     conn.execute(sql_insert)
 
 conn.commit()
