@@ -52,7 +52,7 @@ for key, value in motiers_Water_Level.getData().iteritems():
     sql_insert = 'INSERT OR IGNORE INTO DATA (Epoch, Value, Sensor)\
                   SELECT %s, %s, sensors.id \
                   FROM sensors \
-                  WHERE Description="Water Level in Motiers"' % (key, value)
+                  WHERE Description="%s"' % (key, value, MOTIERS_SLUMP_DESC)
     conn.execute(sql_insert)
 
 conn.commit()
