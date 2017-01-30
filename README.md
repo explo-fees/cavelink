@@ -1,5 +1,5 @@
 # README #
-[![Build Status](https://travis-ci.org/SebastienPittet/lcavelink.svg?branch=master)](https://travis-ci.org/SebastienPittet/lcavelink)
+[![Build Status](https://travis-ci.org/SebastienPittet/cavelink.svg?branch=master)](https://travis-ci.org/SebastienPittet/cavelink)
 
 ### About Cave-Link ###
 Cave-link is a radio device able to transmit data from a cave. You can add some measurement sensors.
