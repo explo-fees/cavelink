@@ -12,7 +12,7 @@ If you know nothing about Cave-link system, the official [website](http://www.ca
 ### What is this repository for? ###
 
 This python library gather the data by parsing the webpage. You will then be able to display the data on your dashboard or store it to your own database.
-I will provide code samples to better explain this.
+I also provide code samples to better explain this -[see directory 'samples'](https://github.com/SebastienPittet/cavelink/tree/master/samples)-.
 
 ### How do I get set up? ###
 Written for python v.2.7.
