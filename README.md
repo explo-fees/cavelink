@@ -20,8 +20,8 @@ Written for python v.2.7.
 To ensure a proper setup, I recommend the use of virtualenv (but optionnal).
 
     sudo apt-get update && sudo apt-get install git python-pip --yes
-    git clone git@github.com:SebastienPittet/lcavelink.git
-    cd lcavelink
+    git clone git@github.com:SebastienPittet/cavelink.git
+    cd cavelink
     virtualenv venv
     source venv/bin/activate
     sudo pip install -r requirements.txt
