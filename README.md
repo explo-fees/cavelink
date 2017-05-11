@@ -3,11 +3,11 @@
 
 ### About Cave-Link ###
 Cave-link is a radio device able to transmit data from a cave. You can add some measurement sensors.
-The data is consolidated on creator's server (database) and displayed through a webpage where the data is dump to, as [this example shows](http://www.cavelink.com/cl/da.php?s=106&g=1&w=0&l=10 title="example").
+The data is consolidated on creator's server (database) and displayed through a webpage where the data is dump to, as [this example shows](http://www.cavelink.com/cl/da.php?s=106&g=1&w=0&l=10 "example of Cave-Link Sensor").
 
 If you own a Cave-link, you should ask Felix Ziegler to get your specific URL, for the sensors you have.
 
-If you know nothing about Cave-link system, the official [website](http://www.cavelink.com title="CaveLink website") is the good place to start ! Or maybe, you can also start with [Wikipedia](https://de.wikipedia.org/wiki/Cave-Link title="Wikipedia CaveLink").
+If you know nothing about Cave-link system, the official [website](http://www.cavelink.com "CaveLink website") is the good place to start! Or maybe, you can also start with [Wikipedia](https://de.wikipedia.org/wiki/Cave-Link "Wikipedia CaveLink").
 
 ### What is this repository for? ###
 
