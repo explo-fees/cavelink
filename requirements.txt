@@ -1,2 +1,2 @@
-virtualenv
+requests
 python-dateutil

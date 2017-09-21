@@ -7,13 +7,13 @@
 """
 This API provides access to Cave-Link data. It has some interest for cavers.
 Following libraries are required :
-    $ pip install python-dateutil
+    $ pip install python-dateutil requests
 """
 
 from dateutil.parser import *
 import time
 import re  # to use regular expression in python
-import urllib2
+import requests
 
 # ########################## Common definitions #########################
 # Some examples of URL
@@ -41,17 +41,16 @@ class Cavelink:
         # Replace number of rows, if provided
         URL = re.sub('(?<=l=)\d{1,}', str(rows), URL)
 
-        webpage = urllib2.Request(URL)
-
         try:
-            handle = urllib2.urlopen(webpage)
-        except IOError:
-            print ('ERROR : unable to get the webpage :-/')
+            webpage = requests.get(URL)
+        except requests.exceptions.RequestException as e:
+            print (e)
+            sys.exit(1)
 
         # Get the HTML page
-        htmlContent = handle.read()
+        htmlContent = webpage.text
 
-        self.rawData = htmlContent.replace(",", "")  # remove the separator (comma)
+        self.rawData = htmlContent.replace(",", "")  # remove separator (,)
         self.data = htmlContent.split("<br>")
 
         for line in self.data:
@@ -72,7 +71,6 @@ class Cavelink:
             if match:
                 self.unit = match.group(0).upper()  # uppercase (C | M | ?)
 
-    @property
     def station(self):
         return self.station
 
@@ -93,7 +91,8 @@ class Cavelink:
                 epochDatetime = findDate(line[0:16])
                 if epochDatetime > 0:
                     # a date was found on this line
-                    DictValues[epochDatetime] = float(line[17:])  # Create a dict with values
+                    # insert value in dict with epoch as key
+                    DictValues[epochDatetime] = float(line[17:])
         return DictValues
 
 # ###################### SOME USEFUL TOOLS ###############################
@@ -133,7 +132,7 @@ if __name__ == "__main__":
     # If launched interactively, display OK message
     if stdout.isatty():
         # Get last value measured/transmitted (by asking only 1 last row)
-        SlumpTemperature = Cavelink(URL=_CL_TEMP_SIPHON, rows=10)
+        SlumpTemperature = Cavelink(URL=_CL_NIVEAU_LANCELEAU, rows=10)
         Data = SlumpTemperature.getData()
 
         print('################################################')
@@ -142,10 +141,12 @@ if __name__ == "__main__":
         print('Number is: %s' % SlumpTemperature.number)
         print('Unit for this data set is: %s\n---' % SlumpTemperature.unit)
 
-        for key, value in Data.iteritems():
+        for key, value in Data.items():
             LastDataValue = value
             LastDataTime = toHumanTime(str(key))
-            print('%s : %s %s' % (LastDataTime, LastDataValue, SlumpTemperature.unit))
+            print('%s : %s %s' % (LastDataTime,
+                                  LastDataValue,
+                                  SlumpTemperature.unit))
 
         print('################################################')
 
