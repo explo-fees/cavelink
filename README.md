@@ -16,7 +16,6 @@ This python library gather the data by parsing the webpage. You will then be abl
 I also provide code samples to better explain this -[see directory 'samples'](https://github.com/SebastienPittet/cavelink/tree/master/samples)-.
 
 ### How do I get set up? ###
-Written for python v.2.7.
 
 To ensure a proper setup, I recommend the use of virtualenv (but optionnal).
 
