@@ -48,7 +48,7 @@ conn = sqlite3.connect(DATABASE)
 conn.execute(create_sensor_query)
 
 # Insert each dict line into database
-for key, value in motiers_Water_Level.getData().iteritems():
+for key, value in motiers_Water_Level.getData().items():
     sql_insert = 'INSERT OR IGNORE INTO DATA (Epoch, Value, Sensor)\
                   SELECT %s, %s, sensors.id \
                   FROM sensors \

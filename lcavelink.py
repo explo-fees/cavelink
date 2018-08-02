@@ -11,6 +11,7 @@ Following libraries are required :
 """
 
 from dateutil.parser import *
+from collections import OrderedDict
 import time
 import re  # to use regular expression in python
 import requests
@@ -45,7 +46,7 @@ class Cavelink:
         try:
             webpage = requests.get(URL)
         except requests.exceptions.RequestException as e:
-            print (e)
+            print(e)
             sys.exit(1)
 
         # Get the HTML page
@@ -94,7 +95,8 @@ class Cavelink:
                     # a date was found on this line
                     # insert value in dict with epoch as key
                     DictValues[epochDatetime] = float(line[17:])
-        return DictValues
+        # order the dict by key (epoch)
+        return OrderedDict(sorted(DictValues.items()))
 
 # ###################### SOME USEFUL TOOLS ###############################
 
