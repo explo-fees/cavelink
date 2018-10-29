@@ -9,7 +9,7 @@
 import os
 import sys
 sys.path.append(os.getcwd()+'/../')
-import lcavelink
+import cavelink
 import sqlite3
 
 ###############################################################################
@@ -36,7 +36,7 @@ def initialize_db():
 ###############################################################################
 # Program
 
-motiers_Water_Level = lcavelink.Cavelink(URL=SLUMP_MOTIERS_URL, rows=100)
+motiers_Water_Level = cavelink.Sensor(URL=SLUMP_MOTIERS_URL, rows=100)
 
 create_sensor_query = 'INSERT OR IGNORE INTO SENSORS (Unit, Description) VALUES ("%s", "%s")' % (motiers_Water_Level.unit, MOTIERS_SLUMP_DESC)
 

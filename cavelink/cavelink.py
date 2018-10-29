@@ -32,7 +32,7 @@ default_rows = '10'
 #########################################################################
 
 
-class Cavelink:
+class Sensor:
 
     """
     Parse the webpage used to export the data and
@@ -135,7 +135,7 @@ if __name__ == "__main__":
     # If launched interactively, display OK message
     if stdout.isatty():
         # Get last value measured/transmitted (by asking only 1 last row)
-        SlumpTemperature = Cavelink(URL=_CL_NIVEAU_LANCELEAU, rows=10)
+        SlumpTemperature = Sensor(URL=_CL_NIVEAU_LANCELEAU, rows=10)
         Data = SlumpTemperature.getData()
 
         print('################################################')

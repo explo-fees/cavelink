@@ -9,7 +9,7 @@
 import os
 import sys
 sys.path.append(os.getcwd()+'/../')
-import lcavelink
+import cavelink
 
 ###############################################################################
 # Configuration
@@ -25,7 +25,7 @@ MOTIERS_SLUMP_DESC = 'Water Level in Motiers'
 ###############################################################################
 # Program
 
-motiers_Water_Level = lcavelink.Cavelink(URL=SLUMP_MOTIERS_URL, rows=3)
+motiers_Water_Level = cavelink.Sensor(URL=SLUMP_MOTIERS_URL, rows=3)
 
 # Insert each dict line into database
 print(MOTIERS_SLUMP_DESC)
