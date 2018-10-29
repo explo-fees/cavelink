@@ -7,39 +7,64 @@
 """
 This API provides access to Cave-Link data. It has some interest for cavers.
 Following libraries are required :
-    $ pip install python-dateutil requests
+    $ pip install python-dateutil requests json
 """
 
-from dateutil.parser import *
+from dateutil.parser import parse
 from collections import OrderedDict
 import time
 import re  # to use regular expression in python
 import requests
 import sys
+import json
 
 # ########################## Common definitions #########################
 # Some examples of URL
 _CL_NIVEAU_S2_COVA = "http://www.cavelink.com/cl/da.php?s=115&g=1&w=103&l=10"
-_CL_NIVEAU_LANCELEAU = "http://www.cavelink.com/cl/da.php?s=142&g=20&w=100&l=10"
 _CL_TEMP_SIPHON = "http://www.cavelink.com/cl/da.php?s=106&g=1&w=0&l=10"
 _CL_V_FEES_SUR1 = "http://www.cavelink.com/cl/da.php?s=142&g=0&w=0&l=10"
 _CL_TEMP_FEES_SUR1 = "http://www.cavelink.com/cl/da.php?s=142&g=10&w=1&l=10"
 
 # Default definitions
-default_CL = _CL_NIVEAU_LANCELEAU
+default_CL = _CL_NIVEAU_S2_COVA
 default_rows = '10'
+default_outputstyle = 'raw'   # can be 'json' or 'oDict'. Default is 'oDict'
+default_datefmt = 'epoch'     # can be 'epoch' or 'human'. Default is 'epoch'
 
 #########################################################################
 
 
 class Sensor:
-
     """
-    Parse the webpage used to export the data and
-    provides values back.
+    The aim of this class is to parse a certain URL to
+    get the data from the cavelink website.
+
+    All information from the webpage is available, such as:
+
+    - Station, Group and Number of the sensor
+    - Timestamps and values
+
+    To instantiate a Sensor object you need to provide:
+        1) the URL to parse
+        2) the number of rows needed (from the most recent one)
+
+    The function getData() allows you to retrieve the data,
+    with the following defaults:
+
+        a) the output is an ordered Dict
+        b) the timestamps are in epoch time format.
     """
 
     def __init__(self, URL=default_CL, rows=default_rows):
+        """
+        Parse the webpage used to export the data and
+        provides values back.
+
+        When the Sensor object is created, two parameters are mandatory:
+            1) URL  : a string corresponding to the URL of a certain sensor ;
+            2) rows : an integer specifiying the number of rows.
+                      (number of rows from the recent one).
+        """
         # Replace number of rows, if provided
         URL = re.sub('(?<=l=)\d{1,}', str(rows), URL)
 
@@ -74,18 +99,45 @@ class Sensor:
                 self.unit = match.group(0).upper()  # uppercase (C | M | ?)
 
     def station(self):
+        """
+        This public method returns the station (?), parsed on the page.
+        """
         return self.station
 
     def group(self):
+        """
+        This public method returns the group (?), parsed on the page.
+        """
         return self.group
 
     def number(self):
+        """
+        This public method returns the number (?), parsed on the page.
+        """
         return self.number
 
     def unit(self):
+        """
+        This public method returns the unit of the sensor (string).
+        """
         return self.unit
 
-    def getData(self):
+    def getData(self,
+                datefmt=default_datefmt,
+                outputstyle=default_outputstyle):
+        """
+        This public method exposes the measurements back.
+        There are 2 mandatory parameters :
+
+        1) datefmt : a string to choose between 'epoch' or 'human'
+        2) outputstyle : a string to choose between 'raw' or 'json'
+
+        The default values are :  'oDict' and 'epoch'.
+        """
+        # get params in lowercase
+        datefmt = datefmt.lower()
+        outputstyle = outputstyle.lower()
+
         DictValues = {}
 
         for line in self.data:
@@ -93,10 +145,21 @@ class Sensor:
                 epochDatetime = findDate(line[0:16])
                 if epochDatetime > 0:
                     # a date was found on this line
-                    # insert value in dict with epoch as key
-                    DictValues[epochDatetime] = float(line[17:])
-        # order the dict by key (epoch)
-        return OrderedDict(sorted(DictValues.items()))
+                    # insert value in dict with timestamp as key
+                    if datefmt == 'human':
+                        timestamp = toHumanTime(epochDatetime)
+                        DictValues[timestamp] = float(line[17:])
+                    else:
+                        # export timestamp in epoch format
+                        DictValues[epochDatetime] = float(line[17:])
+
+        # order the dict by key (timestamp)
+        output = OrderedDict(sorted(DictValues.items()))
+
+        if outputstyle == 'json':
+            output = json.dumps(output)
+
+        return output
 
 # ###################### SOME USEFUL TOOLS ###############################
 
@@ -135,8 +198,9 @@ if __name__ == "__main__":
     # If launched interactively, display OK message
     if stdout.isatty():
         # Get last value measured/transmitted (by asking only 1 last row)
-        SlumpTemperature = Sensor(URL=_CL_NIVEAU_LANCELEAU, rows=10)
-        Data = SlumpTemperature.getData()
+        SlumpTemperature = Sensor(URL=_CL_NIVEAU_S2_COVA, rows=1)
+        Data = SlumpTemperature.getData(outputstyle='oDict',
+                                        datefmt='epoch')
 
         print('################################################')
         print('Station ID is: %s' % SlumpTemperature.station)
