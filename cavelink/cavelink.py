@@ -7,7 +7,7 @@
 """
 This API provides access to Cave-Link data. It has some interest for cavers.
 Following libraries are required :
-    $ pip install python-dateutil requests json
+    $ pip install python-dateutil requests
 """
 
 from dateutil.parser import parse
