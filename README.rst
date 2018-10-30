@@ -42,20 +42,26 @@ optionnal).
 
 Then you can use the module that way:
 
->>> from cavelink import cavelink
+>>> import cavelink
 >>> webpage="http://www.cavelink.com/cl/da.php?s=142&g=10&w=1&l=10"
 >>> nb_rows = 5
->>> sensor=cavelink.Cavelink(webpage,nb_rows)
->>> for key, value in sensor.getData().items():
->>>    print(key, cavelink.toHumanTime(key), value, sensor.unit)
+>>> slump = Sensor(webpage, nb_rows)
+>>> motiers = slump.getJSON(datefmt='human')  # or datefmt='epoch'
+>>> motiers_json = json.loads(motiers)
+>>> 
+>>> for timestamp in motiers_json['measures']:
+>>>    print('%s : %s %s' % (key,
+>>>                           motiers_json['measures'][timestamp],
+>>>                           motiers_json['sensor']['unit']))
 
 You can also fetch additionnal information, also available from the page.
+Please note that the following data is provided in JSON object as well.
 This is:
 
->>> print(sensor.station)
->>> print(sensor.group)
->>> print(sensor.number)
->>> print(sensor.unit)
+>>> print(slump.station)
+>>> print(slump.group)
+>>> print(slump.number)
+>>> print(slump.unit)
 
 Contribution guidelines
 ~~~~~~~~~~~~~~~~~~~~~~~

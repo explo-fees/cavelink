@@ -28,7 +28,7 @@ _CL_TEMP_FEES_SUR1 = "http://www.cavelink.com/cl/da.php?s=142&g=10&w=1&l=10"
 # Default definitions
 default_CL = _CL_NIVEAU_S2_COVA
 default_rows = '10'
-default_outputstyle = 'raw'   # can be 'json' or 'oDict'. Default is 'oDict'
+default_outputfmt = 'raw'     # can be 'json' or 'oDict'. Default is 'oDict'
 default_datefmt = 'epoch'     # can be 'epoch' or 'human'. Default is 'epoch'
 
 #########################################################################
@@ -48,11 +48,10 @@ class Sensor:
         1) the URL to parse
         2) the number of rows needed (from the most recent one)
 
-    The function getData() allows you to retrieve the data,
-    with the following defaults:
+    The function getJSON() allows you to retrieve the data,
+    with the following default:
 
-        a) the output is an ordered Dict
-        b) the timestamps are in epoch time format.
+        * timestamps are in epoch time format.
     """
 
     def __init__(self, URL=default_CL, rows=default_rows):
@@ -122,23 +121,28 @@ class Sensor:
         """
         return self.unit
 
-    def getData(self,
-                datefmt=default_datefmt,
-                outputstyle=default_outputstyle):
+    def getJSON(self,
+                datefmt=default_datefmt):
         """
-        This public method exposes the measurements back.
-        There are 2 mandatory parameters :
+        This public method exposes the measurements in JSON format.
+        There is a mandatory parameters :
 
-        1) datefmt : a string to choose between 'epoch' or 'human'
-        2) outputstyle : a string to choose between 'raw' or 'json'
-
-        The default values are :  'oDict' and 'epoch'.
+            * datefmt : a string to choose between 'epoch' or 'human'
         """
+
         # get params in lowercase
         datefmt = datefmt.lower()
-        outputstyle = outputstyle.lower()
 
-        DictValues = {}
+        sensor = {}  # dict
+        sensor['station'] = self.station
+        sensor['group'] = self.group
+        sensor['number'] = self.number
+        sensor['unit'] = self.unit
+
+        data = {}  # dict
+        data['sensor'] = sensor
+
+        measures = {}
 
         for line in self.data:
             if IsNotNull(line):
@@ -148,17 +152,19 @@ class Sensor:
                     # insert value in dict with timestamp as key
                     if datefmt == 'human':
                         timestamp = toHumanTime(epochDatetime)
-                        DictValues[timestamp] = float(line[17:])
+                        measures[timestamp] = float(line[17:])
                     else:
                         # export timestamp in epoch format
-                        DictValues[epochDatetime] = float(line[17:])
+                        measures[epochDatetime] = float(line[17:])
 
         # order the dict by key (timestamp)
-        output = OrderedDict(sorted(DictValues.items()))
+        output = OrderedDict(sorted(measures.items()))
 
-        if outputstyle == 'json':
-            output = json.dumps(output)
+        data['measures'] = measures
 
+        output = json.dumps(data,
+                            indent=4,
+                            sort_keys=True)
         return output
 
 # ###################### SOME USEFUL TOOLS ###############################
@@ -198,22 +204,19 @@ if __name__ == "__main__":
     # If launched interactively, display OK message
     if stdout.isatty():
         # Get last value measured/transmitted (by asking only 1 last row)
-        SlumpTemperature = Sensor(URL=_CL_NIVEAU_S2_COVA, rows=1)
-        Data = SlumpTemperature.getData(outputstyle='oDict',
-                                        datefmt='epoch')
+        SlumpTemp = Sensor(URL=_CL_NIVEAU_S2_COVA, rows=1)
 
         print('################################################')
-        print('Station ID is: %s' % SlumpTemperature.station)
-        print('Group ID is: %s' % SlumpTemperature.group)
-        print('Number is: %s' % SlumpTemperature.number)
-        print('Unit for this data set is: %s\n---' % SlumpTemperature.unit)
+        print('Station ID is: %s' % SlumpTemp.station)
+        print('Group ID is: %s' % SlumpTemp.group)
+        print('Number is: %s' % SlumpTemp.number)
+        print('Unit for this data set is: %s\n---' % SlumpTemp.unit)
 
-        for key, value in Data.items():
-            LastDataValue = value
-            LastDataTime = toHumanTime(str(key))
-            print('%s : %s %s' % (LastDataTime,
-                                  LastDataValue,
-                                  SlumpTemperature.unit))
+        json = json.loads(SlumpTemp.getJSON(datefmt='human'))
+        for timestamp in json['measures']:
+            print('%s => %s %s' % (timestamp,
+                                   json['measures'][timestamp],
+                                   json['sensor']['unit']))
 
         print('################################################')
 

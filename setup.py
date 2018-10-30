@@ -10,7 +10,7 @@ with open('README.rst', 'r') as f:
 
 setup(
     name='cavelink',
-    version='1.0.0',
+    version='1.1.0',
     author='Sébastien Pittet',
     author_email='sebastien@pittet.org',
     description='Fetch Cavelink data by parsing the webpage of sensors.',
@@ -22,6 +22,7 @@ setup(
     install_requires=['python-dateutil', 'requests'],
     classifiers=[
         'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.4',

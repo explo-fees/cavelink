@@ -10,6 +10,7 @@ import os
 import sys
 sys.path.append(os.getcwd()+'/../')
 import cavelink
+import json
 
 ###############################################################################
 # Configuration
@@ -20,15 +21,20 @@ MOTIERS_SLUMP_DESC = 'Water Level in Motiers'
 ###############################################################################
 # Functions
 
-
-
 ###############################################################################
 # Program
 
-motiers_Water_Level = cavelink.Sensor(URL=SLUMP_MOTIERS_URL, rows=3)
+motiers = cavelink.Sensor(URL=SLUMP_MOTIERS_URL,
+                          rows=3)
 
-# Insert each dict line into database
+# Display data
 print(MOTIERS_SLUMP_DESC)
 
-for key, value in motiers_Water_Level.getData().items():
-   print(key, value)
+water_level = motiers.getJSON(datefmt='human')
+water_level_json = json.loads(water_level)
+
+# parse measures
+for timestamp in water_level_json['measures']:
+    print('%s -> %s %s' % (key,
+                           water_level_json['measures'][timestamp],
+                           water_level_json['sensor']['unit']))
