@@ -28,7 +28,6 @@ _CL_TEMP_FEES_SUR1 = "http://www.cavelink.com/cl/da.php?s=142&g=10&w=1&l=10"
 # Default definitions
 default_CL = _CL_NIVEAU_S2_COVA
 default_rows = '10'
-default_outputfmt = 'raw'     # can be 'json' or 'oDict'. Default is 'oDict'
 default_datefmt = 'epoch'     # can be 'epoch' or 'human'. Default is 'epoch'
 
 #########################################################################
