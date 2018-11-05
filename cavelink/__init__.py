@@ -1,1 +1,1 @@
-import cavelink
+from cavelink import *

@@ -9,13 +9,14 @@ with open('README.rst', 'r') as f:
     long_description = f.read()
 
 setup(
-    name='cavelink',
+    name='example_cavelink',
     version='1.1.0',
     author='Sébastien Pittet',
     author_email='sebastien@pittet.org',
     description='Fetch Cavelink data by parsing the webpage of sensors.',
     long_description=long_description,
     url='https://github.com/SebastienPittet/cavelink',
+    keywords='speleo cave sensor',
     packages=find_packages(),
     license='MIT',
     platforms='any',
@@ -31,6 +32,7 @@ setup(
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
         'Development Status :: 5 - Production/Stable',
-        'Intended Audience :: Developers'
+        'Intended Audience :: Developers',
+        'Intended Audience :: Other Audience'
     ]
 )

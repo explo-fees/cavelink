@@ -9,7 +9,7 @@
 import os
 import sys
 sys.path.append(os.getcwd()+'/../')
-import cavelink
+from cavelink import cavelink
 import json
 
 ###############################################################################
@@ -35,6 +35,6 @@ water_level_json = json.loads(water_level)
 
 # parse measures
 for timestamp in water_level_json['measures']:
-    print('%s -> %s %s' % (key,
+    print('%s -> %s %s' % (timestamp,
                            water_level_json['measures'][timestamp],
                            water_level_json['sensor']['unit']))

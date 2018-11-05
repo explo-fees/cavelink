@@ -28,7 +28,7 @@ _CL_TEMP_FEES_SUR1 = "http://www.cavelink.com/cl/da.php?s=142&g=10&w=1&l=10"
 # Default definitions
 default_CL = _CL_NIVEAU_S2_COVA
 default_rows = '10'
-default_datefmt = 'epoch'     # can be 'epoch' or 'human'. Default is 'epoch'
+default_datefmt = 'epoch'  # can be 'epoch' or 'human'. Default is 'epoch'
 
 #########################################################################
 
@@ -51,6 +51,13 @@ class Sensor:
     with the following default:
 
         * timestamps are in epoch time format.
+        
+    You can also get the following data:
+    
+        * sensor.station
+        * sensor.group
+        * sensor.number
+        * sensor.unit
     """
 
     def __init__(self, URL=default_CL, rows=default_rows):
@@ -95,30 +102,6 @@ class Sensor:
             match = re.search('(?<=Einheit : )\S{1,}', line)
             if match:
                 self.unit = match.group(0).upper()  # uppercase (C | M | ?)
-
-    def station(self):
-        """
-        This public method returns the station (?), parsed on the page.
-        """
-        return self.station
-
-    def group(self):
-        """
-        This public method returns the group (?), parsed on the page.
-        """
-        return self.group
-
-    def number(self):
-        """
-        This public method returns the number (?), parsed on the page.
-        """
-        return self.number
-
-    def unit(self):
-        """
-        This public method returns the unit of the sensor (string).
-        """
-        return self.unit
 
     def getJSON(self,
                 datefmt=default_datefmt):
