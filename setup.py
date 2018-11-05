@@ -9,7 +9,7 @@ with open('README.rst', 'r') as f:
     long_description = f.read()
 
 setup(
-    name='example_cavelink',
+    name='cavelink',
     version='1.1.0',
     author='Sébastien Pittet',
     author_email='sebastien@pittet.org',
