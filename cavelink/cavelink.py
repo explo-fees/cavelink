@@ -1,6 +1,6 @@
 # coding=utf-8
 
-# Published 2016
+# Published 2016, reviewed 2018
 # Author : sebastien at pittet dot org
 # Public domain source code, under MIT License
 
@@ -101,7 +101,7 @@ class Sensor:
 
             match = re.search('(?<=Einheit : )\S{1,}', line)
             if match:
-                self.unit = match.group(0).upper()  # uppercase (C | M | ?)
+                self.unit = match.group(0)
 
     def getJSON(self,
                 datefmt=default_datefmt):

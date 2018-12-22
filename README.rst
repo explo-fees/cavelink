@@ -40,19 +40,44 @@ optionnal).
    source venv/bin/activate
    sudo pip install cavelink
 
+You can also get this module by installing it with:
+
+..
+
+   pip install Cavelink
+
+
 Then you can use the module that way:
 
->>> from cavelink import cavelink
->>> webpage="http://www.cavelink.com/cl/da.php?s=142&g=10&w=1&l=10"
->>> nb_rows = 5
->>> cvlnk = cavelink.Sensor(webpage, nb_rows)
->>> motiers = cvlnk.getJSON(datefmt='human')  # or datefmt='epoch'
->>> motiers_json = json.loads(motiers)
->>> 
->>> for timestamp in motiers_json['measures']:
->>>    print('%s : %s %s' % (key,
->>>                           motiers_json['measures'][timestamp],
->>>                           motiers_json['sensor']['unit']))
+.. code:: python
+
+   from cavelink import cavelink
+   webpage="http://www.cavelink.com/cl/da.php?s=142&g=10&w=1&l=10"
+   nb_rows = 5
+   cvlnk = cavelink.Sensor(webpage, nb_rows)
+   motiers = cvlnk.getJSON(datefmt='human')  # or datefmt='epoch'
+   print(motiers)
+
+You will get a the measurements and the sensor details formatted in JSON.
+
+::
+
+   {
+      "measures": {
+         "22.12.2018 16:00": 6.3,
+         "22.12.2018 16:30": 5.67,
+         "22.12.2018 17:00": 6.0,
+         "22.12.2018 17:30": 5.45,
+         "22.12.2018 18:00": 5.87
+      },
+      "sensor": {
+         "group": "10",
+         "number": "1",
+         "station": "142",
+         "unit": "C"
+      }
+   }
+
 
 You can also fetch additionnal information, also available from the page.
 Please note that the following data is provided in JSON object as well.
@@ -62,6 +87,22 @@ This is:
 >>> print(cvlnk.group)
 >>> print(cvlnk.number)
 >>> print(cvlnk.unit)
+
+To parse the measures, you can use this sample:
+
+.. code:: python
+
+   import json
+   
+   # convert the json-formatted string to a python dictionnay
+   motiers_json = json.loads(motiers)
+
+   # parse measures
+   for timestamp in motiers_json['measures']:
+      print('%s -> %s %s' % (timestamp,
+                           motiers_json['measures'][timestamp],
+                           motiers_json['sensor']['unit']))
+
 
 Contribution guidelines
 ~~~~~~~~~~~~~~~~~~~~~~~
