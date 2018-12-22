@@ -51,9 +51,9 @@ class Sensor:
     with the following default:
 
         * timestamps are in epoch time format.
-        
+
     You can also get the following data:
-    
+
         * sensor.station
         * sensor.group
         * sensor.number

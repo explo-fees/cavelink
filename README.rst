@@ -31,7 +31,7 @@ How do I get set up?
 To ensure a proper setup, I recommend the use of virtualenv (but
 optionnal).
 
-::
+..
 
    sudo apt-get update && sudo apt-get install git python-pip --yes
    mkdir your-project
@@ -39,12 +39,6 @@ optionnal).
    virtualenv venv
    source venv/bin/activate
    sudo pip install cavelink
-
-You can also get this module by installing it with:
-
-..
-
-   pip install Cavelink
 
 
 Then you can use the module that way:
