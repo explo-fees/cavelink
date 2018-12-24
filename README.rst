@@ -33,11 +33,6 @@ optionnal).
 
 ..
 
-   sudo apt-get update && sudo apt-get install git python-pip --yes
-   mkdir your-project
-   cd your-project
-   virtualenv venv
-   source venv/bin/activate
    sudo pip install cavelink
 
 
