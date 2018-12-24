@@ -10,7 +10,7 @@ with open('README.rst', 'r') as f:
 
 setup(
     name='cavelink',
-    version='1.1.0',
+    version='1.1.1',
     author='Sébastien Pittet',
     author_email='sebastien@pittet.org',
     description='Fetch Cavelink data by parsing the webpage of sensors.',
