@@ -8,7 +8,7 @@
 # Imports
 import os
 import sys
-sys.path.append(os.getcwd()+'/../')
+sys.path.append(os.getcwd()+'/../..')
 from cavelink import cavelink
 import json
 
@@ -38,3 +38,7 @@ for timestamp in water_level_json['measures']:
     print('%s -> %s %s' % (timestamp,
                            water_level_json['measures'][timestamp],
                            water_level_json['sensor']['unit']))
+
+
+print('\nContent of JSON export:')
+print(water_level)

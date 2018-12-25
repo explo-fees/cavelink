@@ -113,7 +113,7 @@ Who do I talk to?
 .. _this example shows: http://www.cavelink.com/cl/da.php?s=106&g=1&w=0&l=10
 .. _website: http://www.cavelink.com
 .. _Wikipedia: https://de.wikipedia.org/wiki/Cave-Link
-.. _see directory ‘samples’: https://github.com/SebastienPittet/cavelink/tree/master/samples
+.. _see directory ‘samples’: https://github.com/SebastienPittet/cavelink/blob/master/cavelink/samples/display-cavelink.py
 .. _sebastien at pittet dot org: https://sebastien.pittet.org
 
 .. |Build Status| image:: https://travis-ci.org/SebastienPittet/cavelink.svg?branch=master
