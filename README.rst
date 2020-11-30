@@ -40,11 +40,14 @@ Then you can use the module that way:
 
 .. code:: python
 
-   from cavelink import cavelink
+   from cavelink import cavelink as cl
+
    webpage="http://www.cavelink.com/cl/da.php?s=142&g=10&w=1&l=10"
    nb_rows = 5
-   cvlnk = cavelink.Sensor(webpage, nb_rows)
-   motiers = cvlnk.getJSON(datefmt='human')  # or datefmt='epoch'
+
+   cavelink = cl.Sensor(webpage, nb_rows)
+   motiers = cavelink.getJSON(datefmt='human')  # or datefmt='epoch'
+
    print(motiers)
 
 You will get a the measurements and the sensor details formatted in JSON.
@@ -72,10 +75,10 @@ You can also fetch additionnal information, also available from the page.
 Please note that the following data is provided in JSON object as well.
 This is:
 
->>> print(cvlnk.station)
->>> print(cvlnk.group)
->>> print(cvlnk.number)
->>> print(cvlnk.unit)
+>>> print(cavelink.station)
+>>> print(cavelink.group)
+>>> print(cavelink.number)
+>>> print(cavelink.unit)
 
 To parse the measures, you can use this sample:
 
@@ -102,7 +105,7 @@ Contributors
 ~~~~~~~~~~~~
 
 * Sébastien Pittet (main contributor)
-* Loïc, Bruno and other friends at exoscale.com
+* Loïc, Bruno and other friends at https://www.exoscale.com
 
 
 Who do I talk to?
