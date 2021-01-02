@@ -20,10 +20,10 @@ import json
 
 # ########################## Common definitions #########################
 # Some examples of URL
-_CL_NIVEAU_S2_COVA = "http://www.cavelink.com/cl/da.php?s=115&g=1&w=103&l=10"
-_CL_TEMP_SIPHON = "http://www.cavelink.com/cl/da.php?s=106&g=1&w=0&l=10"
-_CL_V_FEES_SUR1 = "http://www.cavelink.com/cl/da.php?s=142&g=0&w=0&l=10"
-_CL_TEMP_FEES_SUR1 = "http://www.cavelink.com/cl/da.php?s=142&g=10&w=1&l=10"
+_CL_NIVEAU_S2_COVA = "https://www.cavelink.com/cl/da.php?s=115&g=1&w=103&l=10"
+_CL_TEMP_SIPHON = "https://www.cavelink.com/cl/da.php?s=106&g=1&w=0&l=10"
+_CL_V_FEES_SUR1 = "https://www.cavelink.com/cl/da.php?s=142&g=0&w=0&l=10"
+_CL_TEMP_FEES_SUR1 = "https://www.cavelink.com/cl/da.php?s=142&g=10&w=1&l=10"
 
 # Default definitions
 default_CL = _CL_NIVEAU_S2_COVA
