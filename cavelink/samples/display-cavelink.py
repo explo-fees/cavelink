@@ -15,7 +15,7 @@ import json
 ###############################################################################
 # Configuration
 
-SLUMP_MOTIERS_URL = 'http://www.cavelink.com/cl/da.php?s=106&g=1&w=101&l=20'
+SLUMP_MOTIERS_URL = 'https://www.cavelink.com/cl/da.php?s=106&g=1&w=101&l=20'
 MOTIERS_SLUMP_DESC = 'Water Level in Motiers'
 
 ###############################################################################
