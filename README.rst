@@ -1,8 +1,6 @@
 README
 ======
 
-|Build Status|
-
 |lgtm Alerts|
 
 |code quality|
@@ -123,8 +121,6 @@ Who do I talk to?
 .. _see directory ‘samples’: https://github.com/SebastienPittet/cavelink/blob/master/cavelink/samples/display-cavelink.py
 .. _sebastien at pittet dot org: https://sebastien.pittet.org
 
-.. |Build Status| image:: https://travis-ci.org/SebastienPittet/cavelink.svg?branch=master
-   :target: https://travis-ci.org/SebastienPittet/cavelink
 
 .. |lgtm Alerts| image:: https://img.shields.io/lgtm/alerts/g/explo-fees/cavelink.svg?logo=lgtm&logoWidth=18
    :target: https://lgtm.com/projects/g/explo-fees/cavelink/alerts/
