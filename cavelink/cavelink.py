@@ -11,7 +11,6 @@ Following libraries are required :
 """
 
 from dateutil.parser import parse
-from collections import OrderedDict
 import time
 import re  # to use regular expression in python
 import requests
@@ -139,9 +138,6 @@ class Sensor:
                         # export timestamp in epoch format
                         measures[epochDatetime] = float(line[17:])
 
-        # order the dict by key (timestamp)
-        output = OrderedDict(sorted(measures.items()))
-
         data['measures'] = measures
 
         output = json.dumps(data,
@@ -185,8 +181,8 @@ if __name__ == "__main__":
 
     # If launched interactively, display OK message
     if stdout.isatty():
-        # Get last value measured/transmitted (by asking only 1 last row)
-        SlumpTemp = Sensor(URL=_CL_NIVEAU_S2_COVA, rows=1)
+        # Get 3 last value measured/transmitted (by asking only 3 last row)
+        SlumpTemp = Sensor(URL=_CL_NIVEAU_S2_COVA, rows=3)
 
         print('################################################')
         print('Station ID is: %s' % SlumpTemp.station)

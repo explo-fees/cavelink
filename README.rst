@@ -3,6 +3,8 @@ README
 
 |Build Status|
 
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/explo-fees/cavelink.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/explo-fees/cavelink/alerts/)
+
 About Cave-Link
 ~~~~~~~~~~~~~~~
 
