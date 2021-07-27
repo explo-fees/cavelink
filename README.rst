@@ -3,7 +3,9 @@ README
 
 |Build Status|
 
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/explo-fees/cavelink.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/explo-fees/cavelink/alerts/)
+|lgtm Alerts|
+
+|code quality|
 
 About Cave-Link
 ~~~~~~~~~~~~~~~
@@ -123,3 +125,10 @@ Who do I talk to?
 
 .. |Build Status| image:: https://travis-ci.org/SebastienPittet/cavelink.svg?branch=master
    :target: https://travis-ci.org/SebastienPittet/cavelink
+
+.. |lgtm Alerts| image:: https://img.shields.io/lgtm/alerts/g/explo-fees/cavelink.svg?logo=lgtm&logoWidth=18
+   :target: https://lgtm.com/projects/g/explo-fees/cavelink/alerts/
+
+.. |code quality| iamge:: https://img.shields.io/lgtm/grade/python/g/explo-fees/cavelink.svg?logo=lgtm&logoWidth=18
+   :target: href="https://lgtm.com/projects/g/explo-fees/cavelink/context:python
+   
