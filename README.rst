@@ -5,6 +5,8 @@ README
 
 |code quality|
 
+|travis-ci-badge|
+
 About Cave-Link
 ~~~~~~~~~~~~~~~
 
@@ -127,4 +129,7 @@ Who do I talk to?
 
 .. |code quality| image:: https://img.shields.io/lgtm/grade/python/g/explo-fees/cavelink.svg?logo=lgtm&logoWidth=18
    :target: href="https://lgtm.com/projects/g/explo-fees/cavelink/context:python
+
+.. |travis-ci-badge| image:: https://travis-ci.com/explo-fees/cavelink.svg?branch=master
+   :target: https://travis-ci.com/explo-fees/cavelink
    
