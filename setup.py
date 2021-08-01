@@ -10,12 +10,12 @@ with open('README.rst', 'r') as f:
 
 setup(
     name='cavelink',
-    version='1.1.1',
+    version='1.1.2',
     author='Sébastien Pittet',
     author_email='sebastien@pittet.org',
     description='Fetch Cavelink data by parsing the webpage of sensors.',
     long_description=long_description,
-    url='https://github.com/SebastienPittet/cavelink',
+    url='https://github.com/explo-fees/cavelink',
     keywords='speleo cave sensor',
     packages=find_packages(),
     license='MIT',
